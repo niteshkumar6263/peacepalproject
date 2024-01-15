@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeacePal - Incident Reporting</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #BCD5F3;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2, label {
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #3498db;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Incident Reporting</h2>
+  </header>
+
+  <main>
+    <form id="incidentForm">
+      <label for="when">When did the ragging occur:</label>
+      <input type="datetime-local" id="when" name="when" required>
+
+      <label for="where">Where did the ragging occur:</label>
+      <input type="text" id="where" name="where" required>
+
+      <label for="how">How did the ragging occur:</label>
+      <textarea id="how" name="how" required></textarea>
+
+      <label for="otherDetails">Other necessary details:</label>
+      <textarea id="otherDetails" name="otherDetails"></textarea>
+
+      <button type="button" onclick="submitForm()">Submit Report</button>
+    </form>
+
+    <a id="hotspotLink" href="map.html" target="_blank" onclick="passLocation()">View Map</a>
+  </main>
+
+  <script>
+    function submitForm() {
+      const formData = new FormData(document.getElementById('incidentForm'));
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+      const email = 'singhanushk05@gmail.com';
+      const subject = 'Ragging Incident Report';
+      const body = JSON.stringify(formObject, null, 2);
+      const mailtoURL = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoURL;
+    }
+
+    function passLocation() {
+      const location = document.getElementById('where').value;
+      document.getElementById('hotspotLink').href = 'map.html?location=' + encodeURIComponent(location);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeacePal - Navigating towards a ragging-free campus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #BCD5F3;
+            color: #333; /* Default text color */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #0002F3;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h1, p {
+            color: #FFFFFF;
+        }
+
+        .emergency-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background-color: #e74c3c;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .peacepal-details {
+            background-color: #00C0FD;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+            color: #000; /* Paragraph text color */
+        }
+
+        .peacepal-details p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nav-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            margin: 0 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="peacepal-logo.png" alt="PeacePal Logo" style="width: 300px;">
+
+    <h1>PeacePal </h1>
+    <h2>Navigating towards a ragging-free campus</h2>
+    <p>Empowering students to seek help and eradicate ragging from campuses.</p>
+</header>
+
+<main>
+    <div class="nav-container">
+        <nav>
+            <a href="incident-reporting.html">Incident Reporting</a>
+            <a href="talk-to-counsellor.html">Talk to Counsellor</a>
+            <a href="community.html">Community</a>
+            <a href="Events.html">Events</a>
+            <a href="https://gamma.app/public/Stop-Ragging-Stand-Up-for-Your-Peers-p7bqk2p6ql7vr7g">Previous Punishments</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="feedback.html">Feedback </a>
+            <a href="legal-resources.html">Legal Resources </a>
+           
+            
+        </nav>
+    </div>
+
+    <button class="emergency-button" onclick="sendEmergencyHelp()">Emergency Help</button>
+
+    <div class="peacepal-details">
+        <p>PeacePal is a revolutionary platform dedicated to fostering global harmony through meaningful connections. Serving as a digital bridge, PeacePal connects individuals worldwide, transcending borders and cultural differences. This innovative platform encourages open dialogue, cultural exchange, and collaboration among diverse communities. PeacePal empowers users to share perspectives, engage in peaceful discussions, and celebrate the richness of human diversity. By promoting understanding and unity, PeacePal envisions a world where every individual contributes to building a more peaceful and interconnected global community. Embrace diversity, foster connections, and be a part of the PeacePal movement for a more harmonious world.</p>
+    </div>
+</main>
+
+<script>
+    function sendEmergencyHelp() {
+        // Simulating sending a message and location
+        if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const phoneNumber = 'tel:7089096867';
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const geoURI ='geo:${latitude},{longitude}';
+      const message = `Help needed! Location: ${geoURI}`;
+
+      window.location.href = `${phoneNumber}?body=${encodeURIComponent(message)}`;
+    });
+  } else {
+    alert("Geolocation is not supported by your browser.");
+    
+  }
+    }
+</script>
+<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+<script src="https://mediafiles.botpress.cloud/4f8c8b8e-916d-4950-bec3-30f4936259b1/webchat/config.js" defer></script>
+
+</body>
+</html>
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hotspots of Ragging</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #BCD5F3;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2, label {
+      color: #333;
+    }
+
+    /* Adjust input and textarea styles */
+    input, textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    /* Adjust map container style */
+    #map {
+      height: 500px;
+      margin-top: 20px;
+    }
+
+    /* Additional styling for the context text */
+    p {
+      color: #333;
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+  </style>
+
+  <!-- Include Leaflet CSS and JavaScript -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <header>
+    <h2>The Hotspots of Ragging</h2>
+  </header>
+
+  <main>
+    <div id="map"></div>
+
+    <p>Marked are the hotspots of Ragging. Here, recent incidents have taken place. The Anti-Ragging Committee is trying its best to gain control over the area to ensure that no such incidents are reported further.</p>
+
+    <h1>Stay Safe, Stay Alert</h1>
+  </main>
+
+  <script>
+    var map;
+
+    function initMap() {
+      // Get the location from the URL parameters
+      var urlParams = new URLSearchParams(window.location.search);
+      var location = urlParams.get('location');
+
+      // Initialize the map
+      map = L.map('map').setView([0, 0], 2); // Default view, adjust as needed
+
+      // Add a tile layer (you can replace 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' with your preferred tile layer)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // If location is available, set the map view and add a marker
+      if (location) {
+        var [latitude, longitude] = location.split(',');
+        map.setView([parseFloat(latitude), parseFloat(longitude)], 15); // Adjust zoom level as needed
+        L.marker([parseFloat(latitude), parseFloat(longitude)]).addTo(map);
+      }
+    }
+
+    // Initialize the map when the document is ready
+    document.addEventListener('DOMContentLoaded', initMap);
+  </script>
+
+</body>
+</html>
+
+
